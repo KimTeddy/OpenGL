@@ -1,3 +1,6 @@
+# How to PLAY
+- 마우스 커서를 창에 가져다대고 위아래로 움직인다.
+
 # Display Modes
 - Mouse Right Click to Toggle Display Mode
 

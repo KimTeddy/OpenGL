@@ -3,7 +3,7 @@
 
 ![2023-03-25 (9)](https://user-images.githubusercontent.com/68770209/227700524-a5423cf5-7f50-4013-accc-0bc1def9330c.png)
 
-- White Mode
+- White Mode (Default)
 
 ![image](https://user-images.githubusercontent.com/68770209/227700361-74780134-a2ce-42f1-8114-36208858403e.png)
 - Dark Mode

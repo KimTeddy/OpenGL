@@ -43,8 +43,8 @@ void Init() {
 	glOrtho(0.0, 2.0, -1.0, 1.0, 1.0, -1.0);
 
 	GLint MenuID = glutCreateMenu(Menu);
-	glutAddMenuEntry("´ÙÅ©¸ðµå OFF", 1);
-	glutAddMenuEntry("´ÙÅ©¸ðµå ON", 2);
+	glutAddMenuEntry("다크모드 OFF", 1);
+	glutAddMenuEntry("다크모드 ON", 2);
 	glutAttachMenu(GLUT_RIGHT_BUTTON);
 
 }

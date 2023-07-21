@@ -3,14 +3,14 @@
 
 #define HORIZONTAL 0
 #define VERTICAL 1
-#define MARGIN 10//°İÀÚ|ÀÚµ¿Â÷ ¿©¹é
+#define MARGIN 10//ê²©ì|ìë™ì°¨ ì—¬ë°±
 
-int window_w = 600;//Ã¢ Å©±â
+int window_w = 600;//ì°½ í¬ê¸°
 int window_h = 600;
-int selected_car = -1;//Å¬¸¯ÇÑ Â÷
-int mouse_x = 0;//¸¶Áö¸·À¸·Î Å¬¸¯ÇÑ À§Ä¡
+int selected_car = -1;//í´ë¦­í•œ ì°¨
+int mouse_x = 0;//ë§ˆì§€ë§‰ìœ¼ë¡œ í´ë¦­í•œ ìœ„ì¹˜
 int mouse_y = 0;
-float car_w = 0, car_h = 0;//ÀÚµ¿Â÷ ¿µ¿ª °è»ê¿ë º¯¼öµé
+float car_w = 0, car_h = 0;//ìë™ì°¨ ì˜ì—­ ê³„ì‚°ìš© ë³€ìˆ˜ë“¤
 float x_low = 0, x_high = 0, y_low = 0, y_high = 0;
 char game_clear = 0;
 
@@ -19,19 +19,19 @@ char car_parked(int car);
 void draw_car(int i);
 
 typedef struct Car {
-    GLfloat x, y;  //ÀÚµ¿Â÷ ¿ŞÂÊ À§ ÁÂÇ¥
-    GLubyte direction, size;//ÀÚµ¿Â÷ ¹æÇâ, Å©±â
+    GLfloat x, y;  //ìë™ì°¨ ì™¼ìª½ ìœ„ ì¢Œí‘œ
+    GLubyte direction, size;//ìë™ì°¨ ë°©í–¥, í¬ê¸°
 } Car;
 
 Car cars[] = {
-    { 100, 200, HORIZONTAL, 2 },//»©³»¾ß ÇÏ´Â ³ë¶õ»ö ÀÚµ¿Â÷
+    { 100, 200, HORIZONTAL, 2 },//ë¹¼ë‚´ì•¼ í•˜ëŠ” ë…¸ë€ìƒ‰ ìë™ì°¨
     
-    { 0,   0,   HORIZONTAL, 2 },//°¡·Î ¹æÇâÀ¸·Î ¹èÄ¡µÈ ÀÚµ¿Â÷µé
+    { 0,   0,   HORIZONTAL, 2 },//ê°€ë¡œ ë°©í–¥ìœ¼ë¡œ ë°°ì¹˜ëœ ìë™ì°¨ë“¤
     { 400, 300, HORIZONTAL, 2 },
     { 200, 400, HORIZONTAL, 2 },
     { 200, 500, HORIZONTAL, 3 },
     
-    { 0,   200, VERTICAL, 2 },//¼¼·Î ¹æÇâÀ¸·Î ¹èÄ¡µÈ ÀÚµ¿Â÷µé
+    { 0,   200, VERTICAL, 2 },//ì„¸ë¡œ ë°©í–¥ìœ¼ë¡œ ë°°ì¹˜ëœ ìë™ì°¨ë“¤
     { 0,   400, VERTICAL, 2 },
     { 100, 400, VERTICAL, 2 },
     { 300, 0,   VERTICAL, 2 },
@@ -39,7 +39,7 @@ Car cars[] = {
     { 400, 0,   VERTICAL, 3 }
 };
 
-const int car_num = sizeof(cars) / sizeof(Car);//ÀÚµ¿Â÷ ´ë¼ö ÀÚµ¿ Ä«¿îÆ®
+const int car_num = sizeof(cars) / sizeof(Car);//ìë™ì°¨ ëŒ€ìˆ˜ ìë™ ì¹´ìš´íŠ¸
 
 void renderBitmapString(float x, float y, float R, float G, float B, void* font, const char* string)
 {
@@ -53,7 +53,7 @@ void renderBitmapString(float x, float y, float R, float G, float B, void* font,
     glPopMatrix();
 }
 
-void Timer(int value) {//¿£µù ¾Ö´Ï¸ŞÀÌ¼Ç
+void Timer(int value) {//ì—”ë”© ì• ë‹ˆë©”ì´ì…˜
     if (cars[0].x >= 450 && cars[0].x < 900){
         cars[0].x += 1;
         game_clear = 1;
@@ -66,30 +66,30 @@ void Timer(int value) {//¿£µù ¾Ö´Ï¸ŞÀÌ¼Ç
 }
 
 void MouseClick(int button, int state, int x, int y) {
-    if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {//¸¶¿ì½º ¹öÆ° ´©¸¦ ¶§
+    if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {//ë§ˆìš°ìŠ¤ ë²„íŠ¼ ëˆ„ë¥¼ ë•Œ
         for (int i = 0; i < car_num; i++) {
-            car_range(i);//ÀÚµ¿Â÷ ÁÂÇ¥ °è»ê
-            if (x >= x_low && x <= x_high && y >= y_low && y <= y_high) {//¼±ÅÃÇÑ ÀÚµ¿Â÷ È®Á¤
+            car_range(i);//ìë™ì°¨ ì¢Œí‘œ ê³„ì‚°
+            if (x >= x_low && x <= x_high && y >= y_low && y <= y_high) {//ì„ íƒí•œ ìë™ì°¨ í™•ì •
                 selected_car = i;
-                mouse_x = x;//ÀÌÀü ÁÂÇ¥ ÀúÀå
+                mouse_x = x;//ì´ì „ ì¢Œí‘œ ì €ì¥
                 mouse_y = y;
                 break;
             }
         }
     }
-    else if (button == GLUT_LEFT_BUTTON && state == GLUT_UP) {//¸¶¿ì½º ¹öÆ°¿¡¼­ ¼Õ ¶¿ ¶§
+    else if (button == GLUT_LEFT_BUTTON && state == GLUT_UP) {//ë§ˆìš°ìŠ¤ ë²„íŠ¼ì—ì„œ ì† ë—„ ë•Œ
         if (cars[selected_car].direction == HORIZONTAL) {
             if (cars[0].x >= 450) {
                 cars[0].x = 500;
-                glutTimerFunc(1, Timer, 0);//ÀÚµ¿Á¤·Ä Àü ÆÛÁñ ÇØ°á½Ã ¿£µù
+                glutTimerFunc(1, Timer, 0);//ìë™ì •ë ¬ ì „ í¼ì¦ í•´ê²°ì‹œ ì—”ë”©
             }
 
-            if (((int)cars[selected_car].x % 100) < 50)//x°ªÀ» °¡±î¿î °÷À¸·Î ÀÚµ¿ Á¤·Ä
+            if (((int)cars[selected_car].x % 100) < 50)//xê°’ì„ ê°€ê¹Œìš´ ê³³ìœ¼ë¡œ ìë™ ì •ë ¬
                 cars[selected_car].x -= (int)cars[selected_car].x % 100;
             else cars[selected_car].x += 100 - (int)cars[selected_car].x % 100;
         }
         else {
-            if (((int)cars[selected_car].y % 100) < 50)//y°ªÀ» °¡±î¿î °÷À¸·Î ÀÚµ¿ Á¤·Ä
+            if (((int)cars[selected_car].y % 100) < 50)//yê°’ì„ ê°€ê¹Œìš´ ê³³ìœ¼ë¡œ ìë™ ì •ë ¬
                 cars[selected_car].y -= (int)cars[selected_car].y % 100;
             else cars[selected_car].y += 100 - (int)cars[selected_car].y % 100;
         }
@@ -100,26 +100,26 @@ void MouseClick(int button, int state, int x, int y) {
 
 void MouseDrag(int x, int y) {
     if (selected_car != -1) {
-        if (cars[selected_car].direction == HORIZONTAL) {//°¡·Î ¹èÄ¡µÈ ÀÚµ¿Â÷´Â °¡·Î·Î¸¸ ¿òÁ÷ÀÓ
+        if (cars[selected_car].direction == HORIZONTAL) {//ê°€ë¡œ ë°°ì¹˜ëœ ìë™ì°¨ëŠ” ê°€ë¡œë¡œë§Œ ì›€ì§ì„
             if ( cars[selected_car].x >= 0.0 && ( (cars[selected_car].x + cars[selected_car].size * 100) <= 600 || selected_car == 0) ) {
-                float dx = x - mouse_x;//xÀÌµ¿ °Å¸® °è»ê
-                cars[selected_car].x += dx;//xÀÌµ¿ °Å¸® Àû¿ë
-                if (car_parked(selected_car)) cars[selected_car].x -= dx;//ÀÌ¹Ì ´Ù¸¥ ÀÚµ¿Â÷°¡ ÁÖÂ÷µÈ Ä­ÀÌ¸é ±× xÀÌµ¿ °Å¸® Ãë¼Ò
-                if (cars[selected_car].x < 0.0) cars[selected_car].x = 0.0;//È­¸é ¹ÛÀ¸·Î ¸ø ³ª°¡°Ô Á¦ÇÑ
+                float dx = x - mouse_x;//xì´ë™ ê±°ë¦¬ ê³„ì‚°
+                cars[selected_car].x += dx;//xì´ë™ ê±°ë¦¬ ì ìš©
+                if (car_parked(selected_car)) cars[selected_car].x -= dx;//ì´ë¯¸ ë‹¤ë¥¸ ìë™ì°¨ê°€ ì£¼ì°¨ëœ ì¹¸ì´ë©´ ê·¸ xì´ë™ ê±°ë¦¬ ì·¨ì†Œ
+                if (cars[selected_car].x < 0.0) cars[selected_car].x = 0.0;//í™”ë©´ ë°–ìœ¼ë¡œ ëª» ë‚˜ê°€ê²Œ ì œí•œ
                 else if (((cars[selected_car].x + cars[selected_car].size * 100) > 600) && selected_car != 0)
                     cars[selected_car].x = 600 - cars[selected_car].size * 100;
-                mouse_x = x;//ÀÌÀü ÁÂÇ¥ ÀúÀå
+                mouse_x = x;//ì´ì „ ì¢Œí‘œ ì €ì¥
             }
         }
-        else {//¼¼·Î ¹èÄ¡µÈ ÀÚµ¿Â÷´Â °¡·Î·Î¸¸ ¿òÁ÷ÀÓ
+        else {//ì„¸ë¡œ ë°°ì¹˜ëœ ìë™ì°¨ëŠ” ê°€ë¡œë¡œë§Œ ì›€ì§ì„
             if ( cars[selected_car].y >= 0.0 && ( (cars[selected_car].y + cars[selected_car].size * 100) <= 600) ) {
-                float dy = y - mouse_y;//yÀÌµ¿ °Å¸® °è»ê
-                cars[selected_car].y += dy;//yÀÌµ¿ °Å¸® Àû¿ë
-                if (car_parked(selected_car))cars[selected_car].y -= dy;//ÀÌ¹Ì ´Ù¸¥ ÀÚµ¿Â÷°¡ ÁÖÂ÷µÈ Ä­ÀÌ¸é ±× yÀÌµ¿ °Å¸® Ãë¼Ò
-                if (cars[selected_car].y < 0.0) cars[selected_car].y = 0.0;//È­¸é ¹ÛÀ¸·Î ¸ø ³ª°¡°Ô Á¦ÇÑ
+                float dy = y - mouse_y;//yì´ë™ ê±°ë¦¬ ê³„ì‚°
+                cars[selected_car].y += dy;//yì´ë™ ê±°ë¦¬ ì ìš©
+                if (car_parked(selected_car))cars[selected_car].y -= dy;//ì´ë¯¸ ë‹¤ë¥¸ ìë™ì°¨ê°€ ì£¼ì°¨ëœ ì¹¸ì´ë©´ ê·¸ yì´ë™ ê±°ë¦¬ ì·¨ì†Œ
+                if (cars[selected_car].y < 0.0) cars[selected_car].y = 0.0;//í™”ë©´ ë°–ìœ¼ë¡œ ëª» ë‚˜ê°€ê²Œ ì œí•œ
                 else if ((cars[selected_car].y + cars[selected_car].size * 100) > 600)
                     cars[selected_car].y = 600 - cars[selected_car].size * 100;
-                mouse_y = y;//ÀÌÀü ÁÂÇ¥ ÀúÀå
+                mouse_y = y;//ì´ì „ ì¢Œí‘œ ì €ì¥
             }
         }
         glutPostRedisplay();
@@ -129,7 +129,7 @@ void MouseDrag(int x, int y) {
 void Display() {
     glClear(GL_COLOR_BUFFER_BIT);
 
-    glBegin(GL_LINES);//°İÀÚ »ı¼º ½ÃÀÛ
+    glBegin(GL_LINES);//ê²©ì ìƒì„± ì‹œì‘
     glColor3f(0.5, 0.5, 0.5);
     for (int x = 0.0; x <= 600; x += 100) {
         glVertex2f(x, 0.0);
@@ -139,10 +139,10 @@ void Display() {
         glVertex2f(0.0, y);
         glVertex2f(600.0, y);
     }
-    glEnd();//°İÀÚ »ı¼º ¿Ï·á
+    glEnd();//ê²©ì ìƒì„± ì™„ë£Œ
 
     glColor3f(0.1, 0.1, 0.1);
-    glBegin(GL_QUADS);//³ë¶õ»ö Â÷ Àü¿ë ÁøÇÑ µµ·Î
+    glBegin(GL_QUADS);//ë…¸ë€ìƒ‰ ì°¨ ì „ìš© ì§„í•œ ë„ë¡œ
     glVertex2f(0, 199);
     glVertex2f(0, 300);
     glVertex2f(700, 300);
@@ -150,15 +150,15 @@ void Display() {
     glEnd();
 
     for (int i = 0; i < car_num; ++i) {
-        car_range(i);//ÀÚµ¿Â÷ ÁÂÇ¥ °è»ê
-        if (i == 0)glColor3f(0.9, 0.9, 0.0);//ÀÚµ¿Â÷ »ö»ó Àû¿ë
+        car_range(i);//ìë™ì°¨ ì¢Œí‘œ ê³„ì‚°
+        if (i == 0)glColor3f(0.9, 0.9, 0.0);//ìë™ì°¨ ìƒ‰ìƒ ì ìš©
         else if (cars[i].size == 2 && cars[i].direction == VERTICAL)glColor3f(0.2, 0.4, 0.8);
         else if (cars[i].size == 3 && cars[i].direction == VERTICAL)glColor3f(0.1, 0.1, 0.8);
         else if (i != 0 && cars[i].direction == HORIZONTAL)glColor3f(0.9, 0.9, 0.9);
         draw_car(i);
     }
 
-    if (game_clear == 1) {//Å¬¸®¾î ÈÄ ³ë¶õ»ö ÀÚµ¿Â÷ µû¶ó°¡´Â ±ÛÀÚ
+    if (game_clear == 1) {//í´ë¦¬ì–´ í›„ ë…¸ë€ìƒ‰ ìë™ì°¨ ë”°ë¼ê°€ëŠ” ê¸€ì
         renderBitmapString(cars[0].x - 300, 260, 1.0, 1.0, 1.0, GLUT_BITMAP_TIMES_ROMAN_24, "C  L  E  A  R");
     }
 
@@ -170,7 +170,7 @@ int main(int argc, char** argv) {
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
     glutInitWindowSize(window_w, window_h);
     glutInitWindowPosition(600, 200);
-    glutCreateWindow("60191798 ±è¿µÂù");
+    glutCreateWindow("60191798 ê¹€ì˜ì°¬");
     glClearColor(0.2, 0.2, 0.2, 1.0);
     glOrtho(0.0, window_w, window_h, 0.0, -1.0, 1.0);
     glutDisplayFunc(Display);
@@ -180,7 +180,7 @@ int main(int argc, char** argv) {
     return 0;
 }
 
-void car_range(int i) {//i¹øÂ° ÀÚµ¿Â÷ ²ÀÁöÁ¡ À§Ä¡ °è»ê
+void car_range(int i) {//ië²ˆì§¸ ìë™ì°¨ ê¼­ì§€ì  ìœ„ì¹˜ ê³„ì‚°
     if (cars[i].direction == HORIZONTAL) {
         car_w = cars[i].size * 100 - MARGIN * 2;
         car_h = 100 - MARGIN * 2;
@@ -194,14 +194,14 @@ void car_range(int i) {//i¹øÂ° ÀÚµ¿Â÷ ²ÀÁöÁ¡ À§Ä¡ °è»ê
 }
 
 char car_parked(int car) {
-    car_range(car);//ÇöÀç ÀÚµ¿Â÷ÀÇ ²ÀÁöÁ¡ ÁÂÇ¥ ÀúÀå
+    car_range(car);//í˜„ì¬ ìë™ì°¨ì˜ ê¼­ì§€ì  ì¢Œí‘œ ì €ì¥
     int car_x_low = x_low;
     int car_x_high = x_high;
     int car_y_low = y_low;
     int car_y_high = y_high;
     for (int i = 0; i < car_num; i++) {
-        if (i != car) {//ÇöÀç ÀÚµ¿Â÷¸¦ Á¦¿ÜÇÑ ´Ù¸¥ ÀÚµ¿Â÷¿Í ÇöÀç ÀÚµ¿Â÷¸¦ ºñ±³
-            car_range(i);//MARGINÀ» Á¦¿ÜÇÏ¿© ´Ù¸¥ ÀÚµ¿Â÷°¡ ÀÖ´Â ÁÖÂ÷±¸¿ªÀ» ¹üÀ§·Î ÁöÁ¤
+        if (i != car) {//í˜„ì¬ ìë™ì°¨ë¥¼ ì œì™¸í•œ ë‹¤ë¥¸ ìë™ì°¨ì™€ í˜„ì¬ ìë™ì°¨ë¥¼ ë¹„êµ
+            car_range(i);//MARGINì„ ì œì™¸í•˜ì—¬ ë‹¤ë¥¸ ìë™ì°¨ê°€ ìˆëŠ” ì£¼ì°¨êµ¬ì—­ì„ ë²”ìœ„ë¡œ ì§€ì •
             int parked_car_x_low = (int)(x_low - MARGIN);
             int parked_car_x_high = (int)(x_high + MARGIN);
             int parked_car_y_low = (int)(y_low - MARGIN);
@@ -217,7 +217,7 @@ char car_parked(int car) {
                 return 1;//high-high
         }
     }
-    return 0;//¾È °ãÄ§
+    return 0;//ì•ˆ ê²¹ì¹¨
 }
 
 void draw_car(int i)
@@ -226,15 +226,15 @@ void draw_car(int i)
     float point = 0;
     float point_window = 0;
     int backmirror = 0;
-    //±×¸² ±×¸± ¶§ ÁÂÇ¥ Á¤ÇÏ±â ÆíÇÏµµ·Ï ÀÚµ¿Â÷ Å©±â¸¦ µîºĞÇÑ º¯¼ö
+    //ê·¸ë¦¼ ê·¸ë¦´ ë•Œ ì¢Œí‘œ ì •í•˜ê¸° í¸í•˜ë„ë¡ ìë™ì°¨ í¬ê¸°ë¥¼ ë“±ë¶„í•œ ë³€ìˆ˜
     if (cars[i].direction == HORIZONTAL) {
         point = (y_high - y_low) / 4;
     }
     else {
         point = (x_high - x_low) / 4;
     }
-    //ÀÚµ¿Â÷ »ı¼º ½ÃÀÛ
-    glBegin(GL_POLYGON);//²ÀÁöÁ¡ µÕ±Ù »ç°¢Çü »ı¼º ½ÃÀÛ
+    //ìë™ì°¨ ìƒì„± ì‹œì‘
+    glBegin(GL_POLYGON);//ê¼­ì§€ì  ë‘¥ê·¼ ì‚¬ê°í˜• ìƒì„± ì‹œì‘
     if (cars[i].direction == HORIZONTAL) {
         glVertex2f(x_low + point, y_low);
         glVertex2f(x_high - point, y_low);
@@ -251,7 +251,7 @@ void draw_car(int i)
     glVertex2f(x_low, y_low + point);
     glEnd();
 
-    glPushMatrix();//²ÀÁöÁ¡ µÕ±Û°Ô
+    glPushMatrix();//ê¼­ì§€ì  ë‘¥ê¸€ê²Œ
     glTranslatef(x_low + point, y_low + point, 0.0);
     GLUquadricObj* vertex1 = gluNewQuadric();
     gluDisk(vertex1, 0.0, point, 100, 1);
@@ -270,13 +270,13 @@ void draw_car(int i)
     glTranslatef(x_low + point, y_high - point, 0.0);
     GLUquadricObj* vertex4 = gluNewQuadric();
     gluDisk(vertex4, 0.0, point, 100, 1);
-    glPopMatrix();//²ÀÁöÁ¡ µÕ±Ù »ç°¢Çü »ı¼º ¿Ï·á
+    glPopMatrix();//ê¼­ì§€ì  ë‘¥ê·¼ ì‚¬ê°í˜• ìƒì„± ì™„ë£Œ
 
-    point_window = point * 2;//Ã¢¹® À§Ä¡ Àü¿ë º¯¼ö
+    point_window = point * 2;//ì°½ë¬¸ ìœ„ì¹˜ ì „ìš© ë³€ìˆ˜
 
     if (i == selected_car)
-        backmirror = 1;//¼±ÅÃÇÑ ÀÚµ¿Â÷´Â ¹é¹Ì·¯ ÆìÁü
-    glPushMatrix();//ÀÚµ¿Â÷ ¹æÇâ, ¼±ÅÃµÈ ÀÚµ¿Â÷¿¡ µû¸¥ ¹é¹Ì·¯ »ı¼º
+        backmirror = 1;//ì„ íƒí•œ ìë™ì°¨ëŠ” ë°±ë¯¸ëŸ¬ í´ì§
+    glPushMatrix();//ìë™ì°¨ ë°©í–¥, ì„ íƒëœ ìë™ì°¨ì— ë”°ë¥¸ ë°±ë¯¸ëŸ¬ ìƒì„±
     GLUquadricObj* vertex5 = gluNewQuadric();
     if (cars[i].direction == HORIZONTAL) {
         glTranslatef(x_high - point_window - 10, y_low + 1, 0.0);
@@ -300,8 +300,8 @@ void draw_car(int i)
     glPopMatrix();
 
     if (i == selected_car) glColor3f(1.0, 1.0, 0.2);
-    else glColor3f(0.5, 0.5, 0.5);//¼±ÅÃÇÑ ÀÚµ¿Â÷´Â ÀüÁ¶µî ÄÑÁü
-    glPushMatrix();//ÀÚµ¿Â÷ ¹æÇâ, ¼±ÅÃµÈ ÀÚµ¿Â÷¿¡ µû¸¥ ÀüÁ¶µî »ı¼º
+    else glColor3f(0.5, 0.5, 0.5);//ì„ íƒí•œ ìë™ì°¨ëŠ” ì „ì¡°ë“± ì¼œì§
+    glPushMatrix();//ìë™ì°¨ ë°©í–¥, ì„ íƒëœ ìë™ì°¨ì— ë”°ë¥¸ ì „ì¡°ë“± ìƒì„±
     GLUquadricObj* vertex7 = gluNewQuadric();
     if (cars[i].direction == HORIZONTAL) {
         glTranslatef(x_high - point, y_low + point, 0.0);
@@ -324,7 +324,7 @@ void draw_car(int i)
     }
     glPopMatrix();
 
-    glBegin(GL_QUADS);//Ã¢¹® »ı¼º ½ÃÀÛ
+    glBegin(GL_QUADS);//ì°½ë¬¸ ìƒì„± ì‹œì‘
     if (cars[i].direction == HORIZONTAL) {
         glColor3f(0.1, 0.1, 0.1); glVertex2f(x_low + point_window, y_low + window_margin * 2);//back-1
         glColor3f(0.2, 0.2, 0.2); glVertex2f(x_low + point_window + 20, y_low + window_margin * 4);//back-2
@@ -346,7 +346,7 @@ void draw_car(int i)
         glColor3f(0.1, 0.1, 0.1); glVertex2f(x_low + point_window + window_margin * 3 + 20, y_high - window_margin * 4);//right-3
         glColor3f(0.1, 0.1, 0.1); glVertex2f(x_high - point_window - window_margin * 3 - 25, y_high - window_margin * 4);//right-4
     }
-    else {//¼¼·Î ¹æÇâÀÏ ¶§ Æ®·°
+    else {//ì„¸ë¡œ ë°©í–¥ì¼ ë•Œ íŠ¸ëŸ­
         glColor3f(0.1, 0.1, 0.1); glVertex2f(x_low + window_margin * 2, y_high - point_window / 2);//front-1
         glColor3f(0.2, 0.2, 0.2); glVertex2f(x_high - window_margin * 2, y_high - point_window / 2);//front-2
         glColor3f(0.3, 0.3, 0.3); glVertex2f(x_high - window_margin * 4, y_high - point_window / 2 - 20);//front-3
@@ -362,11 +362,11 @@ void draw_car(int i)
         glColor3f(0.1, 0.1, 0.1); glVertex2f(x_high - window_margin * 4, y_high - point_window / 2 - 20 - window_margin * 3);//right-3
         glColor3f(0.1, 0.1, 0.1); glVertex2f(x_high - window_margin * 4, y_high - point_window / 2 - 40 - window_margin * 3);//right-4
     }
-    glEnd();//Ã¢¹® »ı¼º ¿Ï·á
+    glEnd();//ì°½ë¬¸ ìƒì„± ì™„ë£Œ
 
-    if (cars[i].direction == VERTICAL) {//¼¼·Î ¹æÇâÀÏ ¶§¸¸ Æ®·° ¸ğ¾ç
+    if (cars[i].direction == VERTICAL) {//ì„¸ë¡œ ë°©í–¥ì¼ ë•Œë§Œ íŠ¸ëŸ­ ëª¨ì–‘
         float color[3] = { 0.2, 0.4, 0.8 };
-        glBegin(GL_QUADS);//Æ®·° ÁüÄ­ »ı¼º ½ÃÀÛ
+        glBegin(GL_QUADS);//íŠ¸ëŸ­ ì§ì¹¸ ìƒì„± ì‹œì‘
         if (cars[i].size == 3) {
             color[0] = 0.1; color[1] = 0.1; color[2] = 0.8;
         }
@@ -374,6 +374,6 @@ void draw_car(int i)
         glColor3f(color[0] + 0.1, color[1] + 0.1, color[2] + 0.1); glVertex2f(x_low + 2, y_high - 80);
         glColor3f(color[0] + 0.2, color[1] + 0.2, color[2] + 0.2); glVertex2f(x_high - 2, y_high - 80);
         glColor3f(color[0] + 0.0, color[1] + 0.0, color[2] + 0.0); glVertex2f(x_high - 2, y_low + 2);
-        glEnd();//Æ®·° ÁüÄ­ »ı¼º ¿Ï·á
+        glEnd();//íŠ¸ëŸ­ ì§ì¹¸ ìƒì„± ì™„ë£Œ
     }
 }

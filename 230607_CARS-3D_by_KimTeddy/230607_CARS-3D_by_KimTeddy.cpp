@@ -3,7 +3,7 @@
 
 #define HORIZONTAL 0
 #define VERTICAL 1
-#define MARGIN 2//°İÀÚ|ÀÚµ¿Â÷ ¿©¹é
+#define MARGIN 2//ê²©ì|ìë™ì°¨ ì—¬ë°±
 
 void play_solution();
 void reset(int id);
@@ -20,13 +20,13 @@ GLUI_Scrollbar* scrollbar_light_r, * scrollbar_light_g, * scrollbar_light_b;
 GLUI_Translation* trans_xy, * trans_x, * trans_y, * trans_z;
 int mainWindow;
 
-int mouse_x = 0;//¸¶Áö¸·À¸·Î Å¬¸¯ÇÑ À§Ä¡
+int mouse_x = 0;//ë§ˆì§€ë§‰ìœ¼ë¡œ í´ë¦­í•œ ìœ„ì¹˜
 int mouse_y = 0;
-float car_w = 0, car_h = 0;//ÀÚµ¿Â÷ ¿µ¿ª °è»ê¿ë º¯¼öµé
+float car_w = 0, car_h = 0;//ìë™ì°¨ ì˜ì—­ ê³„ì‚°ìš© ë³€ìˆ˜ë“¤
 float x_low = 0, x_high = 0, y_low = 0, y_high = 0;
 char game_clear = 0;
 
-//¼Ö·ç¼Ç
+//ì†”ë£¨ì…˜
 char solution_level = 0, solution_complete = 0;
 int solution_level_complete = 0;
 char anim = 0;
@@ -36,12 +36,12 @@ float car_pos_prev[] = { 0.0, 0.0, 0.0 };
 int car_pos_delta[] = {0, 0, 0};
 
 float positionX = 0, positionY = 0;
-// È¸ÀüÀ» À§ÇÑ º¯¼öµé
+// íšŒì „ì„ ìœ„í•œ ë³€ìˆ˜ë“¤
 int rotationX = 0, rotationY = 0;
 float rotationText = 0;
 float view_rotate[16] = { 1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1 };
 
-// Á¶¸í °ü·Ã º¯¼öµé
+// ì¡°ëª… ê´€ë ¨ ë³€ìˆ˜ë“¤
 bool lightingEnabled = true;
 GLfloat lightPosition[] = { 0.0f, 2.0f, 0.0f, 1.0f };
 GLfloat lightDiffuse[] = { 1.0, 1.0, 1.0, 1.0f };
@@ -50,15 +50,15 @@ GLfloat carColor[3] = { 0.9, 0.9, 0.0 };
 
 int wireFrame = 0;
 
-// ¶óµğ¿À ¹öÆ° °ü·Ã º¯¼öµé
-int selected_car = 0;//¼±ÅÃÇÑ Â÷
+// ë¼ë””ì˜¤ ë²„íŠ¼ ê´€ë ¨ ë³€ìˆ˜ë“¤
+int selected_car = 0;//ì„ íƒí•œ ì°¨
 int radiogroup_value = 0;
-// ¸®½ºÆ® ¹Ú½º °ü·Ã º¯¼öµé
+// ë¦¬ìŠ¤íŠ¸ ë°•ìŠ¤ ê´€ë ¨ ë³€ìˆ˜ë“¤
 int listbox_value = 0;
 
 typedef struct Car {
-    GLfloat x, y;  //ÀÚµ¿Â÷ ¿ŞÂÊ À§ ÁÂÇ¥
-    GLubyte direction, size;//ÀÚµ¿Â÷ ¹æÇâ, Å©±â
+    GLfloat x, y;  //ìë™ì°¨ ì™¼ìª½ ìœ„ ì¢Œí‘œ
+    GLubyte direction, size;//ìë™ì°¨ ë°©í–¥, í¬ê¸°
 } Car;
 typedef struct CarColor {
     GLfloat r, g, b;
@@ -68,18 +68,18 @@ typedef struct Solution {
 } Solution;
 
 Car cars[] = {
-    { 10.0, 20.0, HORIZONTAL, 2 },//»©³»¾ß ÇÏ´Â ³ë¶õ»ö ÀÚµ¿Â÷
+    { 10.0, 20.0, HORIZONTAL, 2 },//ë¹¼ë‚´ì•¼ í•˜ëŠ” ë…¸ë€ìƒ‰ ìë™ì°¨
 
-    { 0.0,  30.0, HORIZONTAL, 2 },//°¡·Î ¹æÇâÀ¸·Î ¹èÄ¡µÈ ÀÚµ¿Â÷µé
+    { 0.0,  30.0, HORIZONTAL, 2 },//ê°€ë¡œ ë°©í–¥ìœ¼ë¡œ ë°°ì¹˜ëœ ìë™ì°¨ë“¤
     { 20.0, 50.0, HORIZONTAL, 2 },
 
-    { 10.0, 40.0, VERTICAL, 2 },//¼¼·Î ¹æÇâÀ¸·Î ¹èÄ¡µÈ ÀÚµ¿Â÷µé
+    { 10.0, 40.0, VERTICAL, 2 },//ì„¸ë¡œ ë°©í–¥ìœ¼ë¡œ ë°°ì¹˜ëœ ìë™ì°¨ë“¤
     { 20.0, 30.0, VERTICAL, 2 },
     { 30.0, 10.0, VERTICAL, 3 },
     { 40.0, 10.0, VERTICAL, 3 }
 }; 
 
-const int car_num = sizeof(cars) / sizeof(Car);//ÀÚµ¿Â÷ ´ë¼ö ÀÚµ¿ Ä«¿îÆ®
+const int car_num = sizeof(cars) / sizeof(Car);//ìë™ì°¨ ëŒ€ìˆ˜ ìë™ ì¹´ìš´íŠ¸
 
 Car cars_init[car_num];
 CarColor car_colors[car_num];
@@ -150,7 +150,7 @@ void renderStrokeString(float x, float y, float z, float R, float G, float B, fl
 }
 
 void Timer(int value) {
-    if (value == 0)//¿£µù ¾Ö´Ï¸ŞÀÌ¼Ç
+    if (value == 0)//ì—”ë”© ì• ë‹ˆë©”ì´ì…˜
     {
         if (cars[0].x >= 40 && cars[0].x < 110) {
             cars[0].x += 0.1;
@@ -164,7 +164,7 @@ void Timer(int value) {
         if (game_clear == 0) {
             if (cars[selected_car].direction == HORIZONTAL) {
 
-                if (((int)cars[selected_car].x % 10) <= 5)//x°ªÀ» °¡±î¿î °÷À¸·Î ÀÚµ¿ Á¤·Ä
+                if (((int)cars[selected_car].x % 10) <= 5)//xê°’ì„ ê°€ê¹Œìš´ ê³³ìœ¼ë¡œ ìë™ ì •ë ¬
                     cars[selected_car].x -= ((int)cars[selected_car].x % 10);
                 else
                 {
@@ -174,7 +174,7 @@ void Timer(int value) {
 
             }
             else {
-                if (((int)cars[selected_car].y % 10) <= 5)//y°ªÀ» °¡±î¿î °÷À¸·Î ÀÚµ¿ Á¤·Ä
+                if (((int)cars[selected_car].y % 10) <= 5)//yê°’ì„ ê°€ê¹Œìš´ ê³³ìœ¼ë¡œ ìë™ ì •ë ¬
                     cars[selected_car].y -= ((int)cars[selected_car].y % 10);
                 else {
 
@@ -269,7 +269,7 @@ void display()
     glRotatef(rotationX, 1.0, 0.0, 0.0);
     glRotatef(rotationY, 0.0, 1.0, 0.0);
     glMultMatrixf(view_rotate);
-    // Æò¸é ±×¸®±â
+    // í‰ë©´ ê·¸ë¦¬ê¸°
     glPushMatrix();
 
     glColor3f(0.2, 0.2, 0.2);
@@ -283,7 +283,7 @@ void display()
 
     glPushMatrix();
     glTranslatef(-30.0, 0.02, -30.0);
-    glBegin(GL_LINES);//°İÀÚ »ı¼º ½ÃÀÛ
+    glBegin(GL_LINES);//ê²©ì ìƒì„± ì‹œì‘
     glColor3f(0.5, 0.5, 0.5);
     glLineWidth(3);
     for (int x = 0.0; x <= 60; x += 10) {
@@ -294,12 +294,12 @@ void display()
         glVertex3f(0.0, 0.0, z);
         glVertex3f(60.0, 0.0, z);
     }
-    glEnd();//°İÀÚ »ı¼º ¿Ï·á
+    glEnd();//ê²©ì ìƒì„± ì™„ë£Œ
     if (wireFrame == 0)
     {
         glColor3f(0.1, 0.1, 0.1);
         glTranslatef(0.0, -0.01, 0.0);
-        glBegin(GL_QUADS);//³ë¶õ»ö Â÷ Àü¿ë ÁøÇÑ µµ·Î
+        glBegin(GL_QUADS);//ë…¸ë€ìƒ‰ ì°¨ ì „ìš© ì§„í•œ ë„ë¡œ
         glVertex3f(0, 0, 20);
         glVertex3f(0, 0, 30);
         glVertex3f(60, 0, 30);
@@ -309,7 +309,7 @@ void display()
     glPopMatrix();
 
 
-    //ÀÚµ¿Â÷
+    //ìë™ì°¨
     for (int i = 0; i < car_num; i++) {
         char num[2] = { 0 };
         num[0] = i + 1 + '0';
@@ -357,7 +357,7 @@ void display()
 
         glDisable(GL_LIGHTING);
         glPushMatrix();
-        if (game_clear == 1) {//Å¬¸®¾î ÈÄ ³ªÅ¸³ª´Â ±ÛÀÚ
+        if (game_clear == 1) {//í´ë¦¬ì–´ í›„ ë‚˜íƒ€ë‚˜ëŠ” ê¸€ì
             glRotatef(rotationText*10, 0.0f, 1.0f, 0.0f);
             renderStrokeString(-20, 10.0+5*sin(rotationText), 0, 0.0, 1.0, 0.0, 0.04, GLUT_STROKE_MONO_ROMAN, (char*)"C L E A R");
         }
@@ -418,16 +418,16 @@ void mouse(int button, int state, int x, int y)
         view_rot->reset();
         GLUI_Master.sync_live_all();
     }
-    else if (button == GLUT_LEFT_BUTTON && state == GLUT_UP) //¸¶¿ì½º ¹öÆ°¿¡¼­ ¼Õ ¶¿ ¶§
+    else if (button == GLUT_LEFT_BUTTON && state == GLUT_UP) //ë§ˆìš°ìŠ¤ ë²„íŠ¼ì—ì„œ ì† ë—„ ë•Œ
     {
         if (cars[0].x >= 45 && game_clear == 0) {
             cars[0].x = 50;
-            glutTimerFunc(100, Timer, 0);//ÀÚµ¿Á¤·Ä Àü ÆÛÁñ ÇØ°á½Ã ¿£µù
+            glutTimerFunc(100, Timer, 0);//ìë™ì •ë ¬ ì „ í¼ì¦ í•´ê²°ì‹œ ì—”ë”©
         }
         if (game_clear == 0) {
             for (int i = 0; i < car_num; i++) {
                 if (cars[i].direction == HORIZONTAL) {
-                    if (((int)cars[i].x % 10) < 5)//x°ªÀ» °¡±î¿î °÷À¸·Î ÀÚµ¿ Á¤·Ä
+                    if (((int)cars[i].x % 10) < 5)//xê°’ì„ ê°€ê¹Œìš´ ê³³ìœ¼ë¡œ ìë™ ì •ë ¬
                         cars[i].x -= (int)cars[i].x % 10;
                     else
                     {
@@ -436,7 +436,7 @@ void mouse(int button, int state, int x, int y)
                     }
                 }
                 else {
-                    if (((int)cars[i].y % 10) < 5)//y°ªÀ» °¡±î¿î °÷À¸·Î ÀÚµ¿ Á¤·Ä
+                    if (((int)cars[i].y % 10) < 5)//yê°’ì„ ê°€ê¹Œìš´ ê³³ìœ¼ë¡œ ìë™ ì •ë ¬
                         cars[i].y -= (int)cars[i].y % 10;
                     else
                     {
@@ -450,7 +450,7 @@ void mouse(int button, int state, int x, int y)
     }
 }
 
-void car_range(int i) {//i¹øÂ° ÀÚµ¿Â÷ ²ÀÁöÁ¡ À§Ä¡ °è»ê
+void car_range(int i) {//ië²ˆì§¸ ìë™ì°¨ ê¼­ì§€ì  ìœ„ì¹˜ ê³„ì‚°
     if (cars[i].direction == HORIZONTAL) {
         car_w = cars[i].size * 10 - MARGIN * 2;
         car_h = 10 - MARGIN * 2;
@@ -464,14 +464,14 @@ void car_range(int i) {//i¹øÂ° ÀÚµ¿Â÷ ²ÀÁöÁ¡ À§Ä¡ °è»ê
 }
 
 char car_parked(int car) {
-    car_range(car);//ÇöÀç ÀÚµ¿Â÷ÀÇ ²ÀÁöÁ¡ ÁÂÇ¥ ÀúÀå
+    car_range(car);//í˜„ì¬ ìë™ì°¨ì˜ ê¼­ì§€ì  ì¢Œí‘œ ì €ì¥
     int car_x_low = x_low;
     int car_x_high = x_high;
     int car_y_low = y_low;
     int car_y_high = y_high;
     for (int i = 0; i < car_num; i++) {
-        if (i != car) {//ÇöÀç ÀÚµ¿Â÷¸¦ Á¦¿ÜÇÑ ´Ù¸¥ ÀÚµ¿Â÷¿Í ÇöÀç ÀÚµ¿Â÷¸¦ ºñ±³
-            car_range(i);//MARGINÀ» Á¦¿ÜÇÏ¿© ´Ù¸¥ ÀÚµ¿Â÷°¡ ÀÖ´Â ÁÖÂ÷±¸¿ªÀ» ¹üÀ§·Î ÁöÁ¤
+        if (i != car) {//í˜„ì¬ ìë™ì°¨ë¥¼ ì œì™¸í•œ ë‹¤ë¥¸ ìë™ì°¨ì™€ í˜„ì¬ ìë™ì°¨ë¥¼ ë¹„êµ
+            car_range(i);//MARGINì„ ì œì™¸í•˜ì—¬ ë‹¤ë¥¸ ìë™ì°¨ê°€ ìˆëŠ” ì£¼ì°¨êµ¬ì—­ì„ ë²”ìœ„ë¡œ ì§€ì •
             int parked_car_x_low = (int)(x_low - MARGIN);
             int parked_car_x_high = (int)(x_high + MARGIN);
             int parked_car_y_low = (int)(y_low - MARGIN);
@@ -487,7 +487,7 @@ char car_parked(int car) {
                 return 1;//high-high
         }
     }
-    return 0;//¾È °ãÄ§
+    return 0;//ì•ˆ ê²¹ì¹¨
 }
 void translation(float x, float y) {
     if (game_clear == 1){
@@ -496,26 +496,26 @@ void translation(float x, float y) {
         trans_y->disable();
         GLUI_Master.sync_live_all();
     }
-    else if (cars[selected_car].direction == HORIZONTAL) {//°¡·Î ¹èÄ¡µÈ ÀÚµ¿Â÷´Â °¡·Î·Î¸¸ ¿òÁ÷ÀÓ
+    else if (cars[selected_car].direction == HORIZONTAL) {//ê°€ë¡œ ë°°ì¹˜ëœ ìë™ì°¨ëŠ” ê°€ë¡œë¡œë§Œ ì›€ì§ì„
         if (cars[selected_car].x >= 0.0 && ((cars[selected_car].x + cars[selected_car].size * 10) <= 60 || selected_car == 0)) {
-            float dx = x - positionX;//xÀÌµ¿ °Å¸® °è»ê
-            cars[selected_car].x += dx;//xÀÌµ¿ °Å¸® Àû¿ë
-            if (car_parked(selected_car)) cars[selected_car].x -= dx;//ÀÌ¹Ì ´Ù¸¥ ÀÚµ¿Â÷°¡ ÁÖÂ÷µÈ Ä­ÀÌ¸é ±× xÀÌµ¿ °Å¸® Ãë¼Ò
-            if (cars[selected_car].x < 0) cars[selected_car].x = 0.0;//È­¸é ¹ÛÀ¸·Î ¸ø ³ª°¡°Ô Á¦ÇÑ
+            float dx = x - positionX;//xì´ë™ ê±°ë¦¬ ê³„ì‚°
+            cars[selected_car].x += dx;//xì´ë™ ê±°ë¦¬ ì ìš©
+            if (car_parked(selected_car)) cars[selected_car].x -= dx;//ì´ë¯¸ ë‹¤ë¥¸ ìë™ì°¨ê°€ ì£¼ì°¨ëœ ì¹¸ì´ë©´ ê·¸ xì´ë™ ê±°ë¦¬ ì·¨ì†Œ
+            if (cars[selected_car].x < 0) cars[selected_car].x = 0.0;//í™”ë©´ ë°–ìœ¼ë¡œ ëª» ë‚˜ê°€ê²Œ ì œí•œ
             else if (((cars[selected_car].x + cars[selected_car].size * 10) > 60) && selected_car != 0)
                 cars[selected_car].x = 60 - cars[selected_car].size * 10;
-            positionX = x;//ÀÌÀü ÁÂÇ¥ ÀúÀå
+            positionX = x;//ì´ì „ ì¢Œí‘œ ì €ì¥
         }
     }
-    else if (cars[selected_car].direction == VERTICAL) {//¼¼·Î ¹èÄ¡µÈ ÀÚµ¿Â÷´Â °¡·Î·Î¸¸ ¿òÁ÷ÀÓ
+    else if (cars[selected_car].direction == VERTICAL) {//ì„¸ë¡œ ë°°ì¹˜ëœ ìë™ì°¨ëŠ” ê°€ë¡œë¡œë§Œ ì›€ì§ì„
         if (cars[selected_car].y >= 0.0 && ((cars[selected_car].y + cars[selected_car].size * 10) <= 60)) {
-            float dy = y - positionY;//yÀÌµ¿ °Å¸® °è»ê
-            cars[selected_car].y += dy;//yÀÌµ¿ °Å¸® Àû¿ë
-            if (car_parked(selected_car)) cars[selected_car].y -= dy;//ÀÌ¹Ì ´Ù¸¥ ÀÚµ¿Â÷°¡ ÁÖÂ÷µÈ Ä­ÀÌ¸é ±× yÀÌµ¿ °Å¸® Ãë¼Ò
-            if (cars[selected_car].y < 0) cars[selected_car].y = 0.0;//È­¸é ¹ÛÀ¸·Î ¸ø ³ª°¡°Ô Á¦ÇÑ
+            float dy = y - positionY;//yì´ë™ ê±°ë¦¬ ê³„ì‚°
+            cars[selected_car].y += dy;//yì´ë™ ê±°ë¦¬ ì ìš©
+            if (car_parked(selected_car)) cars[selected_car].y -= dy;//ì´ë¯¸ ë‹¤ë¥¸ ìë™ì°¨ê°€ ì£¼ì°¨ëœ ì¹¸ì´ë©´ ê·¸ yì´ë™ ê±°ë¦¬ ì·¨ì†Œ
+            if (cars[selected_car].y < 0) cars[selected_car].y = 0.0;//í™”ë©´ ë°–ìœ¼ë¡œ ëª» ë‚˜ê°€ê²Œ ì œí•œ
             else if ((cars[selected_car].y + cars[selected_car].size * 10) > 60)
                 cars[selected_car].y = 60 - cars[selected_car].size * 10;
-            positionY = y;//ÀÌÀü ÁÂÇ¥ ÀúÀå
+            positionY = y;//ì´ì „ ì¢Œí‘œ ì €ì¥
         }
     }
     //if (game_clear == 0) glutTimerFunc(2000, Timer, 1);
@@ -534,7 +534,7 @@ void translationCallback(int id) {
     translation(cars[selected_car].x + car_pos[0], cars[selected_car].y - car_pos[1]);
     if (cars[0].x >= 45 && game_clear == 0) {
         cars[0].x = 50;
-        glutTimerFunc(100, Timer, 0);//ÀÚµ¿Á¤·Ä Àü ÆÛÁñ ÇØ°á½Ã ¿£µù
+        glutTimerFunc(100, Timer, 0);//ìë™ì •ë ¬ ì „ í¼ì¦ í•´ê²°ì‹œ ì—”ë”©
     }
     GLUI_Master.sync_live_all();
     glutPostRedisplay();
@@ -542,7 +542,7 @@ void translationCallback(int id) {
 
 void checkboxCallback(int id)
 {
-    if (id == 1) // Á¶¸í Ã¼Å©¹Ú½º
+    if (id == 1) // ì¡°ëª… ì²´í¬ë°•ìŠ¤
     {
         glEnable(GL_LIGHTING);
     }
@@ -685,7 +685,7 @@ void buttonCallback(int id) {
 
 void reset(int id) {
     for (int i = 0; i < car_num; i++) {
-        if (i == 0)car_colors[i] = { 0.9, 0.9, 0.0 };//ÀÚµ¿Â÷ »ö»ó Àû¿ë
+        if (i == 0)car_colors[i] = { 0.9, 0.9, 0.0 };//ìë™ì°¨ ìƒ‰ìƒ ì ìš©
         else if (cars[i].size == 2 && cars[i].direction == VERTICAL)car_colors[i] = { 0.2, 0.4, 0.8 };
         else if (cars[i].size == 3 && cars[i].direction == VERTICAL)car_colors[i] = { 0.1, 0.1, 0.8 };
         else if (i != 0 && cars[i].direction == HORIZONTAL)car_colors[i] = { 0.9, 0.9, 0.9 };
@@ -696,14 +696,14 @@ void reset(int id) {
         }
     }
     if (id == 1)
-    {    //º¯¼ö ÃÊ±â°ª
-        mouse_x = 0;//¸¶Áö¸·À¸·Î Å¬¸¯ÇÑ À§Ä¡
+    {    //ë³€ìˆ˜ ì´ˆê¸°ê°’
+        mouse_x = 0;//ë§ˆì§€ë§‰ìœ¼ë¡œ í´ë¦­í•œ ìœ„ì¹˜
         mouse_y = 0;
-        car_w = 0, car_h = 0;//ÀÚµ¿Â÷ ¿µ¿ª °è»ê¿ë º¯¼öµé
+        car_w = 0, car_h = 0;//ìë™ì°¨ ì˜ì—­ ê³„ì‚°ìš© ë³€ìˆ˜ë“¤
         x_low = 0, x_high = 0, y_low = 0, y_high = 0;
         game_clear = 0;
 
-        //¼Ö·ç¼Ç
+        //ì†”ë£¨ì…˜
         solution_level = 0, solution_complete = 0;
         solution_level_complete = 0;
         anim = 0;
@@ -718,14 +718,14 @@ void reset(int id) {
             car_pos_delta[i] = 0;
         }
         positionX = 0, positionY = 0;
-        // È¸ÀüÀ» À§ÇÑ º¯¼öµé
+        // íšŒì „ì„ ìœ„í•œ ë³€ìˆ˜ë“¤
         rotationX = 0, rotationY = 0, rotationText = 0;
         float view_rotate_init[16] = { 1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1 };
         for (int i = 0; i < 16; i++) {
             view_rotate[i] = view_rotate_init[i];
         }
 
-        // Á¶¸í °ü·Ã º¯¼öµé
+        // ì¡°ëª… ê´€ë ¨ ë³€ìˆ˜ë“¤
         lightingEnabled = true;
         GLfloat lightPosition_init[] = { 0.0f, 3.0f, 0.0f, 0.0f };
         for (int i = 0; i < 4; i++) {
@@ -754,7 +754,7 @@ void reset(int id) {
         glLightfv(GL_LIGHT0, GL_DIFFUSE, v);
 
         wireFrame = 0;
-        selected_car = 0;//¼±ÅÃÇÑ Â÷
+        selected_car = 0;//ì„ íƒí•œ ì°¨
         listbox_value = 0;
         radiogroup_value = 0;
         checkbox_wireframe->set_int_val(wireFrame);
@@ -784,10 +784,10 @@ int main(int argc, char** argv)
     glutInitWindowSize(1280, 1020);
     glutInitWindowPosition(450, 50);
 
-    mainWindow = glutCreateWindow("60191798 ±è¿µÂù");
+    mainWindow = glutCreateWindow("60191798 ê¹€ì˜ì°¬");
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
-    // GLUI À©µµ¿ì ÃÊ±âÈ­
+    // GLUI ìœˆë„ìš° ì´ˆê¸°í™”
     glutInitWindowPosition(200, 100);
     glui = GLUI_Master.create_glui("Settings");
     glui->set_main_gfx_window(mainWindow);
@@ -797,10 +797,10 @@ int main(int argc, char** argv)
 
     GLUI_Separator* separator = new GLUI_Separator(glui);
 
-    // Ã¼Å©¹Ú½º
+    // ì²´í¬ë°•ìŠ¤
     GLUI_Panel* checkboxes = new GLUI_Panel(glui, "WireMode");
     checkbox_wireframe = new GLUI_Checkbox(checkboxes, "Wire Frame", &wireFrame, 0, checkboxCallback);
-    // »ö±ò
+    // ìƒ‰ê¹”
     GLUI_Rollout* color = new GLUI_Rollout(glui, "Colors", true);
     GLUI_Panel* light0 = new GLUI_Panel(color, "Light");
 
@@ -856,7 +856,7 @@ int main(int argc, char** argv)
 
     glui2 = GLUI_Master.create_glui("Joy Stick");
     glui2->set_main_gfx_window(mainWindow);
-    // ¶óµğ¿À ¹öÆ°
+    // ë¼ë””ì˜¤ ë²„íŠ¼
     GLUI_Panel* carSelecter = glui2->add_panel("Car Selecter");
     listbox = glui2->add_listbox_to_panel(carSelecter, "" , &selected_car, 0, listboxnCallback);
     listbox->add_item(0, "Car 1[-]");

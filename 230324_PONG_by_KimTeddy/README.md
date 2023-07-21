@@ -4,6 +4,11 @@
 - 'r'을 누르면 게임이 리셋된다.
 - 'e'를 누르면 게임이 종료된다.
 
+- Place the mouse cursor over the window and move it up and down.
+- Alternatively, press the 'w' and 's' keys to move the bar up and down.
+- Press 'r' to reset the game.
+- Press 'e' to end the game.
+
 # Display Modes
 - Mouse Right Click to Toggle Display Mode
 

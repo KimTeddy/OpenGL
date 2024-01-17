@@ -784,7 +784,7 @@ int main(int argc, char** argv)
     glutInitWindowSize(1280, 1020);
     glutInitWindowPosition(450, 50);
 
-    mainWindow = glutCreateWindow("60191798 김영찬");
+    mainWindow = glutCreateWindow("3D Car Escape [by.KimTeddy]");
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
     // GLUI 윈도우 초기화

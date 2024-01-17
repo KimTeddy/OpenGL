@@ -1,3 +1,8 @@
+<div align=center>
+<img src="https://github.com/KimTeddy/OpenGL/assets/68770209/eab4b83a-9f8d-45f9-b4c9-0abe932301fb" width="50%">
+<!-- ![240117_PONG](https://github.com/KimTeddy/OpenGL/assets/68770209/eab4b83a-9f8d-45f9-b4c9-0abe932301fb)-->
+</div>
+
 # How to PLAY
 ### 한국어
 - 마우스 커서를 창에 가져다대고 위아래로 움직인다.
@@ -9,6 +14,7 @@
 - Alternatively, press the 'w' and 's' keys to move the bar up and down.
 - Press 'r' to reset the game.
 - Press 'e' to end the game.
+
 
 # Display Modes
 - Mouse Right Click to Toggle Display Mode<br>

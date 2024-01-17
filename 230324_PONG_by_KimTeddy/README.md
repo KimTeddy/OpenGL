@@ -28,11 +28,9 @@
 # Health
 - White Mode
   - Health - 1<br>
-&nbsp;<img src="https://user-images.githubusercontent.com/68770209/227700119-f960dd32-e154-44b1-8f03-a0526ce4d543.png" width="50%">
-<!--    ![2023-03-25 (1)](https://user-images.githubusercontent.com/68770209/227700119-f960dd32-e154-44b1-8f03-a0526ce4d543.png)-->
+&nbsp;<img src="https://user-images.githubusercontent.com/68770209/227700119-f960dd32-e154-44b1-8f03-a0526ce4d543.png" width="50%"><!--    ![2023-03-25 (1)](https://user-images.githubusercontent.com/68770209/227700119-f960dd32-e154-44b1-8f03-a0526ce4d543.png)-->
   - Health - 3<br>
-&nbsp;<img src="https://user-images.githubusercontent.com/68770209/227700605-74e99067-b8c9-4836-af83-653231af12a9.png" width="50%">
-<!--    ![2023-03-25 (10)](https://user-images.githubusercontent.com/68770209/227700605-74e99067-b8c9-4836-af83-653231af12a9.png)-->
+&nbsp;<img src="https://user-images.githubusercontent.com/68770209/227700605-74e99067-b8c9-4836-af83-653231af12a9.png" width="50%"><!--    ![2023-03-25 (10)](https://user-images.githubusercontent.com/68770209/227700605-74e99067-b8c9-4836-af83-653231af12a9.png)-->
 - Dark Mode
   - Health - 1<br>
 &nbsp;<img src="https://user-images.githubusercontent.com/68770209/227700115-0c1a4726-c130-4ffd-be26-aa90e7ef26e9.png" width="50%">

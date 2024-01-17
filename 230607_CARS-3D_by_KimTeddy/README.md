@@ -1,7 +1,7 @@
 # Description
 - Korean
 <pre>
-자동차 주차 퍼즐 게임으로, 논리적 사고와 전략을 사용하여 주어진 문제를 해결하는 게임입니다.
+3D 그래픽 자동차 주차 퍼즐 게임으로, 논리적 사고와 전략을 사용하여 주어진 문제를 해결하는 게임입니다.
 이 게임의 목표는 노란색 자동차를 맨 오른쪽으로 내보내는 것입니다.
 각 차량은 배치된 방향으로만 이동할 수 있고, 다른 차량들을 통과할 수 없습니다.
 이는 논리적 사고와 전략적 사고를 향상시키는 데 도움이 됩니다.
@@ -9,7 +9,7 @@
 <!--이러한 퍼즐은 난이도에 따라 다양하게 제공되며, 초급부터 전문가 수준의 어려운 퍼즐까지 다양한 레벨이 존재합니다. 또한 일부 게임에서는 제한된 움직임 횟수 내에 목표를 달성하는 등의 도전적인 조건이 추가될 수 있습니다.-->
 - English
 <pre>
-This is a car parking puzzle game where you use logical thinking and strategy to solve given problems.
+This is a 3D graphic car parking puzzle game where you use logical thinking and strategy to solve given problems.
 The goal of the game is to get the yellow car to the far right.
 Each vehicle can only move in the direction it is placed and cannot pass other vehicles.
 This helps improve logical and strategic thinking.

@@ -108,7 +108,7 @@ This helps improve logical and strategic thinking.
 ![image](https://github.com/KimTeddy/OpenGL/assets/68770209/3176229d-a9ea-4022-8a32-5ac97810cafa)
 </div>
 
-# 2023 컴퓨터그래픽스 과제2
+# 2023-1학기 컴퓨터그래픽스 과제2
 |게시일|2023.05.23 오후 4:26|
 |-|-|
 |마감일|2023.06.07 오후 11:59|

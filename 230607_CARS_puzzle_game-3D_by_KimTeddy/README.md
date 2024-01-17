@@ -107,3 +107,31 @@ This helps improve logical and strategic thinking.
 ![image](https://github.com/KimTeddy/OpenGL/assets/68770209/3ac75f33-55dd-45bc-88f9-10745a69ee85)
 ![image](https://github.com/KimTeddy/OpenGL/assets/68770209/3176229d-a9ea-4022-8a32-5ac97810cafa)
 </div>
+
+# 2023 컴퓨터그래픽스 과제2
+|게시일|2023.05.23 오후 4:26|
+|-|-|
+|마감일|2023.06.07 오후 11:59|
+|점수공개|2023.06.08 오전 12:00|
+|평가점수|100|
+|평가의견|모범모델로 사용할 것|
+<pre>
+과제 : 주차게임(차량 빼내기)을 3D로 구현하고 3D 회전을 이용하여 여러 방향에서 볼 수 있도록 한다.
+또한 게임 솔루션을 3D 에니메이션을 통해 해법을 제시할 수 있도록 한다.
+
+제출물 : hwp화일 ( 과제표지, 소스코드, 결과영상 ),  별도 소스코드(hw2.cpp)
+과제내용 : 수업시간에 설명합니다.
+1. stand alone GLUI 메뉴를 사용하여 GUI를 구현해야 하며, 14가지 control 를 모두 최소 한 번씩은 사용해야 함.
+- Static Text : 학번 이름 표시
+- Radio Buttons / Listbox : 차량선택에 사용 (Radio button과 Listbox 가 연동되게 해야함.)
+- Translation Controls : 차량을 이동 시 사용
+- Rotation Controls : 게임판 전체를 회전하여 여러 방향에서 볼 수 있도록 할 때 사용
+- Checkboxes : 차량을 wireframe 또는 solid 로 렌더링 선택
+- Buttons : 에니메이션 실행 버튼, 종료버튼, 차량 위치 리셋 등에 사용
+- EditTextBox / Scrollbar : 차량의 색상 R, G, B 변경시 사용
+- Spinners : 조명의 R, G, B 색상변경 시 사용
+- Panels, Rollouts, Columns, Separators
+2. 애니메이션을 실행하면 초기상태에서 출발하여 최종 완료되는 과정을 자동으로 애니메이션하여 해법을 보여야 함.
+3. 3D가 되려면 조명을 사용해야 함. 또한 조명의 R, G, B 값을 변경 가능해야 함.
+4. 차량들을 이동하여 최종적으로 노란색 차량이 빠져나갈 수 있게 해야 하며 종료 시 반드시 미션 완료를 표시해야 함.
+</pre>

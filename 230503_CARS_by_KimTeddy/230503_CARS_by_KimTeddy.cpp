@@ -170,7 +170,7 @@ int main(int argc, char** argv) {
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
     glutInitWindowSize(window_w, window_h);
     glutInitWindowPosition(600, 200);
-    glutCreateWindow("60191798 김영찬");
+    glutCreateWindow("2D Car Escape");
     glClearColor(0.2, 0.2, 0.2, 1.0);
     glOrtho(0.0, window_w, window_h, 0.0, -1.0, 1.0);
     glutDisplayFunc(Display);

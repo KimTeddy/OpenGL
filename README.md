@@ -12,3 +12,4 @@
 
 ### After⌨️
 - 2023.09~12 [Drivers license test Simulation](2309-12_Drivers_license_test_Simulation)
+<br>![KakaoTalk_20231221_022149236](https://github.com/KimTeddy/EmbeddedSystem/assets/68770209/f3162c6e-9d3a-416f-9905-bf8205e7b953)

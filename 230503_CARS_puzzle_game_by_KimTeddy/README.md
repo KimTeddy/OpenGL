@@ -4,34 +4,34 @@
 
 # Description
 1. 초기 세팅 화면<br>
-    ![image](https://github.com/KimTeddy/OpenGL/assets/68770209/54e19479-6c8f-4842-8dac-1a7108b8adb6)
+![1](https://github.com/KimTeddy/OpenGL/assets/68770209/5143809c-4647-46ef-9e8d-5d3e0c298f35)
 
 2. 맨 오른쪽 진한 파란색 트럭을 좌클릭한 상태에서 마우스를 최대한 화면 아래로 움직였을 때<br>
 (다른 자동차에 막혀 더 움직일 수 없음, 전조등 켜짐, 백미러 펴짐)<br>
-    ![image](https://github.com/KimTeddy/OpenGL/assets/68770209/49e185dd-e2b7-4368-9edc-d73f7991b9bb)
+![2](https://github.com/KimTeddy/OpenGL/assets/68770209/610cbe11-9d2d-469a-9b7e-bd885e84a74c)
 
 3. 맨 아래 흰색 자동차를 좌클릭한 상태에서 마우스를 최대한 화면 오른쪽으로 움직였을 때<br>
 (화면 밖으로 나가지 못함, 전조등 켜짐, 백미러 펴짐)<br>
-    ![image](https://github.com/KimTeddy/OpenGL/assets/68770209/51f573bb-2282-46f9-9bca-c8b6be8760ea)
+![3](https://github.com/KimTeddy/OpenGL/assets/68770209/b66008d5-dfc0-41e2-b4cc-e5dd038b48eb)
 
 4. 3번 상태에서 마우스 버튼을 뗀 후 선택했던 흰색 자동차가 격자와 여백을 두고 자동 정렬된 상태<br>
 (전조등 꺼짐, 백미러 접힘)<br>
-    ![image](https://github.com/KimTeddy/OpenGL/assets/68770209/d5663f24-93ca-411f-ab3d-997d8bb501fd)
+![4](https://github.com/KimTeddy/OpenGL/assets/68770209/348f1bfe-73c3-4187-9266-db6687997268)
 
 5. 퍼즐을 푼 후 노란색 자동차를 밖으로 이동하기 이전 상태<br>
-    ![image](https://github.com/KimTeddy/OpenGL/assets/68770209/343da5bd-06ab-4314-8264-1f8b47e70408)
+![5](https://github.com/KimTeddy/OpenGL/assets/68770209/b523f003-eb22-4029-a721-56f8694f3b59)
 
 6. 노란색 자동차를 좌클릭한 상태에서 마우스를 끌어 노란색 자동차를 화면 끝에 놓기 직전 상태<br>
-    ![image](https://github.com/KimTeddy/OpenGL/assets/68770209/fdc0f4d1-0ab5-4a00-a6b3-41d145c0c284)
+![6](https://github.com/KimTeddy/OpenGL/assets/68770209/c56edc8c-994c-4458-a24e-f81ac899b980)
 
 7. 마우스를 놓으면 자동차가 서서히 나가는 애니메이션이 나오며 “C L E A R” 문자가 뜨고 이는 자동차의 움직임을 따라감<br>
-    ![image](https://github.com/KimTeddy/OpenGL/assets/68770209/c066b43a-a077-4197-bfb5-ef613485f634)
+![7](https://github.com/KimTeddy/OpenGL/assets/68770209/37e50a89-b164-4ead-8f78-41201dba7964)
 
 8. “C L E A R” 문자는 끝까지 자동차의 움직임을 따라감<br>
-    ![image](https://github.com/KimTeddy/OpenGL/assets/68770209/aa1a5c8d-608a-477e-84d2-0ed8fd642158)
+![8](https://github.com/KimTeddy/OpenGL/assets/68770209/028140c4-e625-4448-a867-21aecdfbfa3d)
 
 9. “C L E A R”의 ‘C’가 화면 밖으로 나가기 전까지는 프로그램 유지<br>
-    ![image](https://github.com/KimTeddy/OpenGL/assets/68770209/8f51aaef-2e04-45c8-9301-4455924f6286)
+![9](https://github.com/KimTeddy/OpenGL/assets/68770209/20c8b2cc-0b3d-43a7-a059-4ed11c7be917)
 
 10. “C L E A R”의 ‘C’까지 화면 밖으로 나가면 프로그램 자동 종료<br>
     ![image](https://github.com/KimTeddy/OpenGL/assets/68770209/42bcdd9f-8f6c-41d5-b13c-ecebb5d7cfed)

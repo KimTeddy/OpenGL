@@ -1,3 +1,7 @@
+# 2D 자동차 빼기 퍼즐 게임
+- 프로그램 완성 날짜: 2023.05.03
+- 이미지 텍스처 맵핑 없이 온전히 코딩으로만 제작한 게임입니다.
+
 # How to PLAY
 - 차를 마우스로 드래그하여 최종적으로 노란색 차를 맨 오른쪽으로 나갈 수 있게 만든다.
 - Drag the car with the mouse to finally make the yellow car exit to the far right.

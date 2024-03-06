@@ -2,6 +2,37 @@
 ## 📖Studied - 2023.03~06
 
 ## 💻Projects
+<table align="center">
+  <tr align="center">
+    <th>Phase</th>
+    <th>Date</th>
+    <th>Lines of Code</th>
+    <th>Go to Description</th>
+  </tr>
+  <tr align="center">
+    <td rowspan="3">While Studying📖</td>
+    <td>2023.03.04</td>
+    <td>302</td>
+    <td align="left"><a href="230324_PONG_by_KimTeddy">PONG GAME</a></td>
+  </tr>
+  <tr align="center">
+    <td>2023.05.03</td>
+    <td>379</td>
+    <td align="left"><a href="230503_CARS_puzzle_game_by_KimTeddy">2D CAR Escape Game</a></td>
+  </tr>
+  <tr align="center">
+    <td>2023.06.07</td>
+    <td>900</td>
+    <td align="left"><a href="230607_CARS_puzzle_game-3D_by_KimTeddy">3D CAR(?) Escape Game</a></td>
+  </tr>
+  <tr align="center">
+    <td>After⌨️</td>
+    <td>2023.09~12</td>
+    <td>954</td>
+    <td align="left"><a href="2309-12_Drivers_license_test_Simulation">Drivers license test Simulation</a></td>
+  </tr>
+</table>
+
 ### While Studying📖
 - 2023.03.04 [PONG GAME](230324_PONG_by_KimTeddy)
 - 2023.05.03 [2D CAR Escape Game](230503_CARS_puzzle_game_by_KimTeddy)

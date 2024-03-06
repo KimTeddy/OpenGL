@@ -22,7 +22,7 @@
   </tr>
   <tr align="center">
     <td>2023.06.07</td>
-    <td>900</td>
+    <td>915</td>
     <td align="left"><a href="230607_CARS_puzzle_game-3D_by_KimTeddy">3D CAR(?) Escape Game</a></td>
   </tr>
   <tr align="center">
